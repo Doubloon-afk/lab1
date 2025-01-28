@@ -2,13 +2,16 @@
 package lab1;
 import java.awt.*;
 
-public abstract class Car {
+public abstract class Car implements Movable {
 
     private final int nrDoors; // Number of doors on the car
     public double enginePower; // Engine power of the car
     public double currentSpeed; // The current speed of the car
-    public Color color; // Color of the car
+    private Color color; // Color of the car
     private final String modelName; // The car model name
+    private int xPos;
+    private int yPos;
+    private String direction;
 
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
 
@@ -67,6 +70,18 @@ public abstract class Car {
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
+    }
+
+    public void move(){
+
+    }
+
+    public void turnLeft(){
+
+    }
+
+    public void turnRight(){
+
     }
 
 }
