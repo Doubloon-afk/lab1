@@ -8,10 +8,10 @@ public abstract class Car implements Movable {
     public double enginePower; // Engine power of the car
     public double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
-    private final String modelName; // The car model name
-    private int xPos;
-    private int yPos;
-    private String direction;
+    public final String modelName; // The car model name
+    public double xPos;
+    public double yPos;
+    public String direction = "North";
 
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
 
@@ -54,34 +54,77 @@ public abstract class Car implements Movable {
     public abstract double speedFactor();
 
     private void incrementSpeed(double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }
 
     private void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
     }
 
 
     // TODO fix this method according to lab pm
     public void gas(double amount){
-        incrementSpeed(amount);
+        if (amount <= 1 && amount >= 0){
+            incrementSpeed(amount);
+        }
     }
 
     // TODO fix this method according to lab pm
     public void brake(double amount){
-        decrementSpeed(amount);
+        if (amount <= 1 && amount >= 0){
+            decrementSpeed(amount);
+        }
     }
 
     public void move(){
-
-    }
-
-    public void turnLeft(){
-
+        switch (direction){
+            case "North":
+                yPos += currentSpeed;
+                break;
+            case "East":
+                xPos += currentSpeed;
+                break;
+            case "South":
+                yPos -= currentSpeed;
+                break;
+            case "West":
+                xPos -= currentSpeed;
+                break;
+        }
     }
 
     public void turnRight(){
+        switch (direction){
+            case "North":
+                direction = "East";
+                break;
+            case "East":
+                direction = "South";
+                break;
+            case "South":
+                direction = "West";
+                break;
+            case "West":
+                direction = "North";
+                break;
+        }
+    }
 
+    public void turnLeft(){
+        switch (direction){
+            case "North":
+                direction = "West";
+                break;
+            case "East":
+                direction = "North";
+                break;
+            case "South":
+                direction = "East";
+                break;
+            case "West":
+                direction = "South";
+                break;
+        }
     }
 
 }
