@@ -11,7 +11,7 @@ public abstract class Car implements Movable {
     public final String modelName; // The car model name
     public double xPos;
     public double yPos;
-    public String direction = "North";
+    public String direction = "North"; //predetermined direction of the car
 
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
 
@@ -27,6 +27,7 @@ public abstract class Car implements Movable {
     public int getNrDoors(){
         return nrDoors;
     }
+
     public double getEnginePower(){
         return enginePower;
     }
@@ -62,20 +63,21 @@ public abstract class Car implements Movable {
     }
 
 
-    // TODO fix this method according to lab pm
+    // IncrementSpeed is called when the argument is between the interval 0 and 1
     public void gas(double amount){
         if (amount <= 1 && amount >= 0){
             incrementSpeed(amount);
         }
     }
 
-    // TODO fix this method according to lab pm
+    // DecrementSpeed is called when the argument is between the interval 0 and 1
     public void brake(double amount){
         if (amount <= 1 && amount >= 0){
             decrementSpeed(amount);
         }
     }
 
+    //Depending on the direction of the car, we are either moving positive or negative in the x ad y axis
     public void move(){
         switch (direction){
             case "North":
@@ -93,6 +95,7 @@ public abstract class Car implements Movable {
         }
     }
 
+    //The cars direction adjusts 90 degrees to the left replacing the old direction as a string
     public void turnRight(){
         switch (direction){
             case "North":
@@ -109,7 +112,7 @@ public abstract class Car implements Movable {
                 break;
         }
     }
-
+    //The cars direction adjusts 90 degrees to the right replacing the old direction as a string
     public void turnLeft(){
         switch (direction){
             case "North":
