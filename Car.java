@@ -5,15 +5,15 @@ import java.awt.*;
 public abstract class Car implements Movable {
 
     private final int nrDoors; // Number of doors on the car
-    public double enginePower; // Engine power of the car
-    public double currentSpeed; // The current speed of the car
+    protected double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
-    public final String modelName; // The car model name
-    public double xPos;
-    public double yPos;
-    public String direction = "North"; //predetermined direction of the car
+    protected final String modelName; // The car model name
+    private double xPos;
+    private double yPos;
+    private String direction = "North"; //predetermined direction of the car
 
-    public Car(int nrDoors, double enginePower, Color color, String modelName) {
+    protected Car(int nrDoors, double enginePower, Color color, String modelName) {
 
        this.nrDoors = nrDoors;
        this.enginePower = enginePower;
@@ -52,7 +52,7 @@ public abstract class Car implements Movable {
         currentSpeed = 0;
     }
 
-    public abstract double speedFactor();
+    protected abstract double speedFactor();
 
     private void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
@@ -128,6 +128,16 @@ public abstract class Car implements Movable {
                 direction = "South";
                 break;
         }
+    }
+
+    public double getXPos(){
+        return xPos;
+    }
+    public double getYPos(){
+        return yPos;
+    }
+    public String getDirection(){
+        return direction;
     }
 
 }
